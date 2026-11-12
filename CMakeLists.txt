@@ -22,4 +22,4 @@ add_subdirectory(vendor/rlImGui)
 add_subdirectory(ew)
 
 #Examples
-add_subdirectory(examples/helloWorld)
+add_subdirectory(examples/theCloth)

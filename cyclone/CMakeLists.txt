@@ -2,11 +2,13 @@ cmake_minimum_required(VERSION 3.25)
 project(cyclone)
 set(cyclone_sources
 	 "core.cpp"
+		"verletParticle.cpp"
 )
 set(cyclone_headers
 	"precision.h"
 	"core.h"
 	"cyclone.h"
+		"verletParticle.h"
 )
 
 set(cyclone_INC_DIR
