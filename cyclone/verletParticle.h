@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 #include"core.h"
 
 namespace cyclone
@@ -8,7 +7,7 @@ namespace cyclone
 	{
 	public:
 
-		VerletParticle(real mass);
+		VerletParticle(real mass, Vector3 pos);
 
 		void integrate(real deltaTime);
 

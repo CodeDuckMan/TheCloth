@@ -1,8 +1,10 @@
-include "verletParticle.h"
+#include "verletParticle.h"
 
-cyclone::VerletParticle::VerletParticle(real mass)
+cyclone::VerletParticle::VerletParticle(real mass, Vector3 pos)
 {
 	setInverseMass(mass);
+	setCurrentPosition(pos);
+	setPreviousPosition(pos);
 }
 
 void cyclone::VerletParticle::integrate(real deltaTime)
