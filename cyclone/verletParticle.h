@@ -14,7 +14,7 @@ namespace cyclone
 
 
 		void setInverseMass(const real mass);
-		real getInverseMass() const { return m_inverseMass; }
+		real getInverseMass() const { return m_isAnchor ? 0 : m_inverseMass; }
 
 
 		void addPosition(Vector3 pos) { m_position += pos; }

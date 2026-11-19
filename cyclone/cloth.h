@@ -13,6 +13,9 @@ namespace cyclone
 
 		void integrate(real dt);
 
+		const std::vector<cyclone::VerletParticle*>& getParticles() const { return m_particles; }
+		const std::vector<cyclone::Stick*>& getSticks() const { return m_sticks; }
+
 
 	private:
 

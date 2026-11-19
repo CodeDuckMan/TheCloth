@@ -3,12 +3,16 @@ project(cyclone)
 set(cyclone_sources
 	 "core.cpp"
 		"verletParticle.cpp"
+		"cloth.cpp"
+		"stick.cpp"
 )
 set(cyclone_headers
 	"precision.h"
 	"core.h"
 	"cyclone.h"
 		"verletParticle.h"
+		"cloth.h"
+		"stick.cpp"
 )
 
 set(cyclone_INC_DIR

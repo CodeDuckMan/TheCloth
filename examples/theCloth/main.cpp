@@ -9,6 +9,8 @@
 
 #include <ew/camera.h>
 
+#include <cyclone/cloth.h>
+
 #include "ew/conversions.h"
 
 struct AppSettings {
@@ -59,9 +61,19 @@ int main() {
     // Point Stuff
     SetupLayout(0);
 
+
+
+    // For a fixed update
+    float fixedTimeStep = 0.01f;
+    float accumulator = 0;
+
+    // THE CLOTH
+    cyclone::Cloth theCloth = cyclone::Cloth(10, 10, 2, cyclone::Vector3{ -10, 10, 0 }, 1);
+
     while (!WindowShouldClose()) {
         //Seconds between previous frame and this one
         float deltaTime = GetFrameTime();
+        accumulator += deltaTime;
         
         //Input
         if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON)) {
@@ -75,6 +87,15 @@ int main() {
             ew::UpdateFlyCamera(&camera, deltaTime);
         }
 
+
+        // Integrating the Cloth
+        while (accumulator > fixedTimeStep)
+        {
+            theCloth.integrate(fixedTimeStep);
+            accumulator -= fixedTimeStep;
+        }
+
+
         //Spin the cube
         cubeYaw += _appSettings.spinSpeed * deltaTime;
 
@@ -86,9 +107,25 @@ int main() {
         //Drawing
         BeginDrawing();
 
+
+       
+
+
         //3D mode draws objects in right-handed vector space
         BeginMode3D(camera);
         ClearBackground(SKYBLUE);
+
+        // Drawing the Points
+        for (int i = 0; i < theCloth.getParticles().size(); i++)
+        {
+            DrawSphere(ew::CTR(theCloth.getParticles()[i]->getCurrentPosition()), 0.5, RED);
+        }
+
+        // Drawing the Sticks
+        for (int i = 0; i < theCloth.getSticks().size(); i++)
+        {
+            DrawLine3D(ew::CTR(theCloth.getSticks()[i]->getParticleOne()->getCurrentPosition()), ew::CTR(theCloth.getSticks()[i]->getParticleTwo()->getCurrentPosition()), WHITE);
+        }
 
 
         switch (_appSettings.currentLayout)
