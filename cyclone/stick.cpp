@@ -15,6 +15,16 @@ cyclone::real cyclone::Stick::getDistance(VerletParticle* p1, VerletParticle* p2
 	real dZ = p1->getCurrentPosition().z - p2->getCurrentPosition().z;
 
 	return sqrt(dX * dX + dY * dY + dZ + dZ);
+}
 
+void cyclone::Stick::distanceConstraint(real restLength)
+{
+	Vector3 deltaPos = m_particle2.getCurrentPosition() - m_particle1.getCurrentPosition();
 
+	real deltaLength = deltaPos.magnitude();
+
+	real diff = (deltaLength - restLength) / (deltaLength * (m_particle1.getInverseMass() + m_particle2.getInverseMass()));
+
+	m_particle1.addPosition(deltaPos * m_particle1.getInverseMass() * diff);
+	m_particle2.addPosition(deltaPos * m_particle2.getInverseMass() * -diff);
 }

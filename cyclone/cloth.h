@@ -2,6 +2,7 @@
 #include"core.h"
 #include <vector>
 #include "verletParticle.h"
+#include "stick.h"
 
 namespace cyclone
 {
@@ -15,8 +16,8 @@ namespace cyclone
 
 	private:
 
-		std::vector<VerletParticles*> particles;
-		std::vector<Sticks*> sticks;
+		std::vector<VerletParticle*> m_particles;
+		std::vector<Stick*> m_sticks;
 
 		real m_clothWidth;
 		real m_clothHeight;
@@ -24,6 +25,8 @@ namespace cyclone
 		Vector3 m_gravity = { 0.0f, -9.8f, 0.0f };
 
 		real m_constraintIterations = 50;
+
+		real m_stickLength;
 
 	};
 }
