@@ -12,7 +12,9 @@ namespace cyclone
 
 		real getDistance(VerletParticle* p1, VerletParticle* p2);
 
-		getDifference(VerletParticle* p1, VerletParticle* p2);
+		real getDifference(VerletParticle* p1, VerletParticle* p2);
+
+		void distanceConstraint(real restLength);
 
 	private:
 		VerletParticle* m_particle1;

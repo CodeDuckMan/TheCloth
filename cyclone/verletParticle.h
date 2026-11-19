@@ -1,5 +1,6 @@
 #pragma once
-#include"core.h"
+#include "core.h"
+#include "stick.h"
 
 namespace cyclone
 {
@@ -24,6 +25,10 @@ namespace cyclone
 
 		void setPreviousPosition(Vector3 pos) { m_previousPos = pos; }
 
+
+		void addStick(Stick* stick, int index) { m_sticks[index] = stick; }
+		void pin() { m_isAnchor = true; }
+
 	private:
 		Vector3 m_position = Vector3{ 0, 0, 0 };
 		Vector3 m_previousPos = m_position;
@@ -31,5 +36,9 @@ namespace cyclone
 
 		Vector3 m_acceleration = cyclone::Vector3{ 0, -9.8f, 0 };
 		real m_damping = 0.995;
+
+		Stick* m_sticks[2] = { nullptr }; // one horizontal and one vertical stick referenced
+
+		bool m_isAnchor = false;
 	};
 }
